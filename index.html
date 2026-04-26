@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中视未央（北京）文化科技有限公司</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    :root {
+      --primary: #0d1b3e;
+      --accent: #c8a96e;
+      --accent2: #e63946;
+      --light-bg: #f8f6f2;
+      --section-gap: 100px;
+    }
+
+    /* ===== Navbar ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(13, 27, 62, 0.97);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 70px;
+      border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-text {
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-align-last: justify;
+    }
+
+    .nav-logo-sub {
+      color: var(--accent);
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 100%;
+      height: 2px;
+      background: var(--accent);
+      transition: right 0.25s;
+    }
+
+    .nav-links a:hover::after {
+      right: 0;
+    }
+
+    /* ===== Hero ===== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(160deg, rgba(13, 27, 62, 0.90) 0%, rgba(13, 27, 62, 0.65) 50%, rgba(0, 0, 0, 0.72) 100%),
+        linear-gradient(135deg, #1a2d5a, #0d1b3e);
+    }
+
+    .hero-bg-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.08;
+      background-image:
+        radial-gradient(circle at 20% 50%, var(--accent) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, var(--accent) 1px, transparent 1px),
+        radial-gradient(circle at 60% 80%, #fff 0.5px, transparent 0.5px);
+      background-size: 80px 80px, 120px 120px, 40px 40px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 20px;
+    }
+
+    .hero-logo-img {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 32px;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 40px rgba(200, 169, 110, 0.3);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(200, 169, 110, 0.15);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      padding: 6px 20px;
+      border-radius: 30px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.3em;
+      margin-bottom: 48px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      transition: all 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: #e0c07a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 169, 110, 0.4);
+    }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      transition: all 0.25s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      animation: bounce 2.2s infinite;
+      z-index: 2;
+    }
+
+    .scroll-down::before {
+      content: '';
+      width: 1.5px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.25);
+      margin-bottom: 8px;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
+    }
+
+    /* ===== Section Common ===== */
+    section {
+      padding: var(--section-gap) 0;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-desc {
+      color: #555;
+      font-size: 1rem;
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      margin: 18px 0 32px;
+    }
+
+    /* ===== Stats ===== */
+    #stats {
+      background: var(--primary);
+      padding: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 24px 16px;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-num sup {
+      font-size: 1.2rem;
+    }
+
+    .stat-label {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== About ===== */
+    #about {
+      background: #fff;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-badge {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 18px 24px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 1rem;
+      line-height: 1.5;
+      text-align: center;
+      margin-top: -40px;
+      margin-left: 24px;
+      margin-right: 24px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 24px rgba(200, 169, 110, 0.25);
+    }
+
+    .about-text h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .about-text p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .about-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .about-tag {
+      background: rgba(13, 27, 62, 0.07);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== Structure ===== */
+    #structure {
+      background: var(--light-bg);
+    }
+
+    .structure-img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ===== Partner Logos ===== */
+    #partners {
+      background: #fff;
+    }
+
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .partner-logo {
+      background: var(--light-bg);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      height: 90px;
+      transition: all 0.25s;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .partner-logo:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-color: var(--accent);
+    }
+
+    .partner-logo img {
+      max-height: 50px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: grayscale(30%);
+      transition: filter 0.25s;
+    }
+
+    .partner-logo:hover img {
+      filter: grayscale(0%);
+    }
+
+    .partner-more {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      height: 90px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Honor ===== */
+    #honor {
+      background: var(--light-bg);
+    }
+
+    .honor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .honor-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      text-align: center;
+      transition: transform 0.25s;
+    }
+
+    .honor-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .honor-img {
+      width: 100%;
+      height: 280px;
+      object-fit: contain;
+      padding: 24px 24px 0;
+    }
+
+    .honor-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      padding: 16px;
+      background: #fff;
+    }
+
+    /* ===== Cases - PPT真实截图展示 ===== */
+    #cases {
+      background: #fff;
+    }
+
+    .cases-intro {
+      margin-bottom: 48px;
+    }
+
+    .slide-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .slide-card {
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      transition: transform 0.25s;
+      cursor: pointer;
+      background: var(--light-bg);
+    }
+
+    .slide-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    }
+
+    .slide-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .slide-card-label {
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #fff;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .slide-full {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+      margin-top: 32px;
+    }
+
+    .slide-full img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ===== AIGC ===== */
+    #aigc {
+      background: var(--primary);
+    }
+
+    #aigc .section-label {
+      color: var(--accent);
+    }
+
+    #aigc .section-title {
+      color: #fff;
+    }
+
+    #aigc .section-desc {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    #aigc .divider {
+      background: var(--accent);
+    }
+
+    .aigc-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .aigc-card {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.25s;
+    }
+
+    .aigc-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .aigc-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .aigc-card h4 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .aigc-card p {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .aigc-book {
+      margin-top: 48px;
+      background: rgba(200, 169, 110, 0.12);
+      border: 1px solid rgba(200, 169, 110, 0.3);
+      border-radius: 6px;
+      padding: 32px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .aigc-book img {
+      width: 160px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+    }
+
+    .aigc-book-text h4 {
+      color: var(--accent);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .aigc-book-text p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ===== Footprint ===== */
+    #footprint {
+      background: var(--light-bg);
+    }
+
+    .footprint-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .footprint-item {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.25s;
+    }
+
+    .footprint-item:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* ===== Equipment ===== */
+    #equipment {
+      background: #fff;
+    }
+
+    .equip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .equip-card {
+      background: var(--light-bg);
+      border-radius: 6px;
+      padding: 24px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .equip-card h4 {
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    .equip-card ul {
+      list-style: none;
+    }
+
+    .equip-card li {
+      color: #555;
+      font-size: 0.88rem;
+      padding: 5px 0;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+    }
+
+    .equip-card li:last-child {
+      border-bottom: none;
+    }
+
+    /* ===== Contact ===== */
+    #contact {
+      background: var(--primary);
+    }
+
+    #contact .section-label {
+      color: var(--accent);
+    }
+
+    #contact .section-title {
+      color: #fff;
+    }
+
+    #contact .divider {
+      background: var(--accent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    .contact-info {}
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(200, 169, 110, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .contact-detail h4 {
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .contact-detail p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .contact-qr {
+      text-align: center;
+    }
+
+    .contact-qr img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 0 auto 12px;
+      border: 3px solid rgba(200, 169, 110, 0.3);
+    }
+
+    .contact-qr p {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.85rem;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 24px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.82rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .partner-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .slide-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .aigc-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .equip-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .honor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footprint-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <nav>
+    <div class="nav-logo">
+      <img src="images/logo.jpg" alt="中视未央" style="width:42px;height:42px;border-radius:8px;object-fit:cover;"
+        onerror="this.style.display='none'">
+      <div>
+        <div class="nav-logo-text">中视未央</div>
+        <div class="nav-logo-sub">ZHONG SHI WE YOUNG</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#partners">合作伙伴</a></li>
+      <li><a href="#cases">作品案例</a></li>
+      <li><a href="#aigc">AIGC</a></li>
+      <li><a href="#footprint">拍摄足迹</a></li>
+      <li><a href="#equipment">设备团队</a></li>
+      <li><a href="#contact">联系我们</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <img src="images/logo.jpg" alt="中视未央标志" class="hero-logo-img">
+      <div class="hero-tag">AI 驱动的文化科技新锐力量</div>
+      <h1 class="hero-title">中视未央<span>（北京）文化科技有限公司</span></h1>
+      <p class="hero-subtitle">诚信 &nbsp;·&nbsp; 高效 &nbsp;·&nbsp; 专业</p>
+      <p class="hero-tagline">用专业成就你我 · 长乐未央</p>
+      <div class="hero-btns">
+        <a href="#cases" class="btn-primary">观看作品</a>
+        <a href="#contact" class="btn-outline">联系我们</a>
+      </div>
+    </div>
+    <div class="scroll-down">SCROLL</div>
+  </section>
+
+  <!-- ===== Stats ===== -->
+  <div id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">15<sup>+</sup></div>
+          <div class="stat-label">覆盖省份</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">30<sup>+</sup></div>
+          <div class="stat-label">覆盖城市</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">AAA</div>
+          <div class="stat-label">企业信用评级</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2023</div>
+          <div class="stat-label">公司成立年份</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== About ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <img src="slides/slide7.jpeg" alt="华普国际大厦" class="about-img" title="公司地址：北京市朝阳区朝阳门外大街19号华普国际大厦925室"
+            onerror="this.src='https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800'">
+          <div class="about-badge">📍 北京市朝阳区核心地段 · 毗邻外交部</div>
+        </div>
+        <div class="about-text">
+          <div class="section-label">一 · 关于我们</div>
+          <div class="divider"></div>
+          <h3>公司简介</h3>
+          <p>中视未央（北京）文化科技有限公司成立于2023年，位于北京市朝阳区朝外大街19号华普国际大厦，是一家以从事<strong>影视传媒制作、培训、科技推广和应用服务业</strong>为主的企业。</p>
+          <p>公司业务涵盖电视专题片、宣传片、广告片、TVC、慕课制作等多个传媒领域，拥有党政权威、网媒宣发、新媒体矩阵、媒体线下邀约等垂直宣发渠道。</p>
+          <div class="about-tags">
+            <span class="about-tag">影视制作</span>
+            <span class="about-tag">动画制作</span>
+            <span class="about-tag">AIGC创作</span>
+            <span class="about-tag">品牌策划</span>
+            <span class="about-tag">影视培训</span>
+            <span class="about-tag">MOOC摄制</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Structure ===== -->
+  <section id="structure" style="background: var(--light-bg);">
+    <div class="container">
+      <div class="section-label">一 · 关于我们</div>
+      <h2 class="section-title">公司<span>架构</span></h2>
+      <div class="divider"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;">
+        <div style="background:var(--primary);color:#fff;border-radius:8px;padding:24px;text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:8px;">🏢</div>
+          <div style="font-weight:800;font-size:0.95rem;">华谱（北京）咨询有限公司</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:4px;">战略咨询</div>
+        </div>
+        <div style="background:var(--primary);color:#fff;border-radius:8px;padding:24px;text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:8px;">🎬</div>
+          <div style="font-weight:800;font-size:0.95rem;">青岛道道文化传播有限公司</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:4px;">文化传播</div>
+        </div>
+        <div style="background:var(--primary);color:#fff;border-radius:8px;padding:24px;text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:8px;">📚</div>
+          <div style="font-weight:800;font-size:0.95rem;">山东南亩文化传媒有限公司</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:4px;">传媒运营</div>
+        </div>
+        <div style="background:var(--primary);color:#fff;border-radius:8px;padding:24px;text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:8px;">🌐</div>
+          <div style="font-weight:800;font-size:0.95rem;">济宁唐卿网络文化有限公司</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:4px;">网络文化</div>
+        </div>
+        <div style="background:var(--primary);color:#fff;border-radius:8px;padding:24px;text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:8px;">✨</div>
+          <div style="font-weight:800;font-size:0.95rem;">济宁市星汉文化传媒有限公司</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:4px;">文化传媒</div>
+        </div>
+        <div style="background:var(--primary);color:#fff;border-radius:8px;padding:24px;text-align:center;">
+          <div style="font-size:1.5rem;margin-bottom:8px;">🚀</div>
+          <div style="font-weight:800;font-size:0.95rem;">人为峰（辽宁）科技有限公司</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:4px;">科技服务</div>
+        </div>
+      </div>
+      <p style="text-align:center;color:#888;font-size:0.9rem;margin-top:24px;">公司旗下拥有6家兄弟公司，覆盖咨询、传播、网络文化、动画科技等多个领域</p>
+    </div>
+  </section>
+
+  <!-- ===== Partners ===== -->
+  <section id="partners">
+    <div class="container">
+      <div class="section-label">二 · 合作伙伴</div>
+      <h2 class="section-title">重要<span>合作伙伴</span></h2>
+      <div class="divider"></div>
+      <div class="partner-grid">
+        <!-- 合作伙伴 Logo 来自PPT Slide 9-11 -->
+        <div class="partner-logo"><img src="images/image27.png" alt="CGTN"
+            onerror="this.parentElement.innerHTML='CGTN'"></div>
+        <div class="partner-logo"><img src="images/image28.png" alt="人民网" onerror="this.parentElement.innerHTML='人民网'">
+        </div>
+        <div class="partner-logo"><img src="images/image29.png" alt="央视10套"
+            onerror="this.parentElement.innerHTML='央视10'"></div>
+        <div class="partner-logo"><img src="images/image30.png" alt="央视15套"
+            onerror="this.parentElement.innerHTML='央视15'"></div>
+        <div class="partner-logo"><img src="images/image31.png" alt="外交部门户"
+            onerror="this.parentElement.innerHTML='外交部'"></div>
+        <div class="partner-logo"><img src="images/image32.png" alt="首都机场公安"
+            onerror="this.parentElement.innerHTML='首都公安'"></div>
+        <div class="partner-logo"><img src="images/image33.png" alt="中华网" onerror="this.parentElement.innerHTML='中华网'">
+        </div>
+        <div class="partner-logo"><img src="images/image34.png" alt="中国网" onerror="this.parentElement.innerHTML='中国网'">
+        </div>
+        <div class="partner-logo"><img src="images/image35.png" alt="凤凰网" onerror="this.parentElement.innerHTML='凤凰网'">
+        </div>
+        <div class="partner-logo"><img src="images/image36.png" alt="新浪网" onerror="this.parentElement.innerHTML='新浪网'">
+        </div>
+        <div class="partner-logo"><img src="images/image37.png" alt="腾讯网" onerror="this.parentElement.innerHTML='腾讯网'">
+        </div>
+        <div class="partner-more">+ 更多合作伙伴</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Honor ===== -->
+  <section id="honor" style="background: var(--light-bg);">
+    <div class="container">
+      <div class="section-label">二 · 企业荣誉</div>
+      <h2 class="section-title">AAA级<span>企业荣誉</span></h2>
+      <div class="divider"></div>
+      <div class="honor-grid">
+        <div class="honor-card">
+          <img src="images/image52.png" alt="重合同守信用企业" class="honor-img" onerror="this.src='images/image53.png'">
+          <div class="honor-title">AAA级重合同守信用企业</div>
+        </div>
+        <div class="honor-card">
+          <img src="images/image53.png" alt="质量服务诚信企业" class="honor-img" onerror="this.src='images/image52.png'">
+          <div class="honor-title">AAA级质量服务诚信企业</div>
+        </div>
+        <div class="honor-card">
+          <img src="images/image54.png" alt="重服务守信用企业" class="honor-img">
+          <div class="honor-title">AAA级重服务守信用企业</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Cases ===== -->
+  <section id="cases">
+    <div class="container">
+      <div class="cases-intro">
+        <div class="section-label">三 · 作品案例</div>
+        <h2 class="section-title">精选<span>作品案例</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <!-- PPT 真实幻灯片截图画廊 -->
+      <div class="slide-gallery">
+        <div class="slide-card">
+          <img src="slides/slide23.png" alt="满婷系列广告" onerror="this.src='slides/slide23b.png'">
+          <div class="slide-card-label">满婷系列广告 · TVC</div>
+        </div>
+        <div class="slide-card">
+          <img src="slides/slide24.png" alt="小葵花露系列广告" onerror="this.src='slides/slide24b.png'">
+          <div class="slide-card-label">小葵花露系列广告 · TVC</div>
+        </div>
+        <div class="slide-card">
+          <img src="slides/slide26.png" alt="宣传片作品">
+          <div class="slide-card-label">宣传片 · 纪录片</div>
+        </div>
+        <div class="slide-card">
+          <img src="slides/slide27.png" alt="动画作品">
+          <div class="slide-card-label">动画作品 · MG动画</div>
+        </div>
+        <div class="slide-card">
+          <img src="slides/slide30.png" alt="新媒体案例">
+          <div class="slide-card-label">新媒体运营案例</div>
+        </div>
+        <div class="slide-card">
+          <img src="slides/slide30b.png" alt="政务宣传">
+          <div class="slide-card-label">政务宣传 · 抖音号</div>
+        </div>
+      </div>
+
+      <!-- 全幅案例展示 -->
+      <div class="slide-full">
+        <img src="slides/slide25.png" alt="人民网项目 · 纪录片" title="人民网系列纪录片项目" onerror="this.style.display='none'">
+      </div>
+      <p style="text-align:center;color:#888;font-size:0.9rem;margin-top:12px;">人民网系列纪录片 · 记录时代故事</p>
+
+      <!-- 更多案例全幅 -->
+      <div class="slide-full">
+        <img src="slides/slide29.png" alt="外交部直播项目" title="外交部迎国庆歌咏比赛直播" onerror="this.style.display='none'">
+      </div>
+      <p style="text-align:center;color:#888;font-size:0.9rem;margin-top:12px;">外交部直播项目 · "永远跟党走 奋进新征程"迎国庆歌咏比赛</p>
+
+      <div class="slide-full">
+        <img src="slides/slide28.png" alt="央视频项目" title="央视频合作项目" onerror="this.style.display='none'">
+      </div>
+      <p style="text-align:center;color:#888;font-size:0.9rem;margin-top:12px;">央视频项目 · 非遗国潮交响夜 · 京东日记</p>
+    </div>
+  </section>
+
+  <!-- ===== AIGC ===== -->
+  <section id="aigc">
+    <div class="container">
+      <div class="section-label">四 · 人工智能 AIGC</div>
+      <h2 class="section-title">AI 驱动<span>内容创作</span></h2>
+      <div class="divider"></div>
+
+      <!-- AI原创作品展示 - 来自PPT Slide 38 -->
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:32px;margin-bottom:40px;">
+        <h3 style="color:var(--accent);font-size:1.1rem;font-weight:700;margin-bottom:20px;">🎨 AIGC 原创作品展示</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div style="border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+            <img src="aigc/ai_work1.png" alt="AI广告设计作品" style="width:100%;height:200px;object-fit:cover;"
+              onerror="this.parentElement.style.display='none'">
+            <div
+              style="background:rgba(255,255,255,0.1);padding:10px;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.8);">
+              AI 广告设计</div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+            <img src="aigc/ai_work2.png" alt="AI广告设计作品" style="width:100%;height:200px;object-fit:cover;"
+              onerror="this.parentElement.style.display='none'">
+            <div
+              style="background:rgba(255,255,255,0.1);padding:10px;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.8);">
+              AI 广告设计</div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+            <img src="aigc/ai_work3.png" alt="AI广告设计作品" style="width:100%;height:200px;object-fit:cover;"
+              onerror="this.parentElement.style.display='none'">
+            <div
+              style="background:rgba(255,255,255,0.1);padding:10px;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.8);">
+              AI 广告设计</div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+            <img src="aigc/ai_work4.png" alt="AI广告设计作品" style="width:100%;height:200px;object-fit:cover;"
+              onerror="this.parentElement.style.display='none'">
+            <div
+              style="background:rgba(255,255,255,0.1);padding:10px;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.8);">
+              AI 广告设计</div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+            <img src="aigc/ai_work5.png" alt="AI漫剧作品" style="width:100%;height:200px;object-fit:cover;"
+              onerror="this.parentElement.style.display='none'">
+            <div
+              style="background:rgba(255,255,255,0.1);padding:10px;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.8);">
+              AI 短视频</div>
+          </div>
+          <div style="border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+            <img src="aigc/ai_work6.png" alt="AI作品展示" style="width:100%;height:200px;object-fit:cover;"
+              onerror="this.parentElement.style.display='none'">
+            <div
+              style="background:rgba(255,255,255,0.1);padding:10px;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.8);">
+              AI 原创作品</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI赋能企业案例 -->
+      <div style="border-radius:8px;overflow:hidden;margin-bottom:40px;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+        <img src="aigc/ai_enterprise.jpeg" alt="AI赋能企业案例" style="width:100%;height:300px;object-fit:cover;"
+          onerror="this.style.display='none'">
+      </div>
+
+      <!-- 四大AI业务 -->
+      <div class="aigc-cards">
+        <div class="aigc-card">
+          <div class="aigc-icon">🧑‍💻</div>
+          <h4>数字人</h4>
+          <p>AI数字人定制，应用于企业宣传、教育培训、直播带货等多场景</p>
+        </div>
+        <div class="aigc-card">
+          <div class="aigc-icon">🎬</div>
+          <h4>AI 漫剧</h4>
+          <p>AI短剧系列，将企业业务以生动有趣的故事形式展现，提升拓客能力</p>
+        </div>
+        <div class="aigc-card">
+          <div class="aigc-icon">📚</div>
+          <h4>AI 教育出版</h4>
+          <p>与北京航空航天大学共同出版高等院校计算机及人工智能专业教材</p>
+        </div>
+        <div class="aigc-card">
+          <div class="aigc-icon">✏️</div>
+          <h4>AI 广告设计</h4>
+          <p>AI辅助广告设计、短视频创作，高效产出优质视觉内容</p>
+        </div>
+      </div>
+
+      <!-- 教材展示 -->
+      <div class="aigc-book">
+        <img src="aigc/image138.png" alt="AIGC教材封面" title="《AIGC新媒体技能应用与实战》" onerror="this.src='images/image138.png'">
+        <div class="aigc-book-text">
+          <h4>📖 与北京航空航天大学共同创作出版</h4>
+          <p>《AIGC 新媒体技能应用与实战》——
+            高等院校计算机及人工智能专业教材，于2025年5月16日正式上线京东、当当网。本教材系统讲解AIGC技术在新媒体领域的实战应用，涵盖数字人生成、AI视频创作、智能内容分发等前沿技术方向。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footprint ===== -->
+  <section id="footprint">
+    <div class="container">
+      <div class="section-label">五 · 拍摄足迹</div>
+      <h2 class="section-title">足迹遍布<span>全国及海外</span></h2>
+      <div class="divider"></div>
+      <div class="footprint-grid">
+        <div class="footprint-item">🇨🇳 北京</div>
+        <div class="footprint-item">🇨🇳 上海</div>
+        <div class="footprint-item">🇨🇳 广州</div>
+        <div class="footprint-item">🇨🇳 成都</div>
+        <div class="footprint-item">🇨🇳 青岛</div>
+        <div class="footprint-item">🇨🇳 郑州</div>
+        <div class="footprint-item">🇨🇳 武汉</div>
+        <div class="footprint-item">🇨🇳 天津</div>
+        <div class="footprint-item">🇰🇷 韩国首尔</div>
+        <div class="footprint-item">🇯🇵 日本东京</div>
+      </div>
+      <p style="text-align:center;color:#888;font-size:0.9rem;margin-top:20px;">公司摄制组足迹覆盖全国15省30+城市，并延伸至韩国首尔、日本东京等海外地区
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Equipment ===== -->
+  <section id="equipment">
+    <div class="container">
+      <div class="section-label">六 · 摄像团队及设备</div>
+      <h2 class="section-title">专业<span>影视设备</span></h2>
+      <div class="divider"></div>
+      <div class="equip-grid">
+        <div class="equip-card">
+          <h4>📷 电影级摄像设备</h4>
+          <ul>
+            <li>德国阿莱 ALEXA Mini LF</li>
+            <li>德国阿莱 ARRI-Alexa</li>
+            <li>RED RAVEN 电影机</li>
+            <li>索尼 PXW-FX9 全画幅6K电影机</li>
+            <li>索尼 PXW-FS7 数码摄像机</li>
+            <li>索尼 A7S3</li>
+            <li>佳能 EOS C300 Mark III</li>
+          </ul>
+        </div>
+        <div class="equip-card">
+          <h4>🎥 航拍及辅助设备</h4>
+          <ul>
+            <li>大疆 Mavic 3 Pro</li>
+            <li>大疆专业航拍系统</li>
+            <li>专业灯光系统</li>
+            <li>专业录音设备</li>
+            <li>斯坦尼康稳定器</li>
+            <li>各类电影镜头组</li>
+          </ul>
+        </div>
+        <div class="equip-card">
+          <h4>💻 后期制作系统</h4>
+          <ul>
+            <li>达芬奇 DaVinci 调色系统 4套</li>
+            <li>FCPX 剪辑系统 5套</li>
+            <li>Adobe 剪辑软件系统 4套</li>
+            <li>高清非编系统 13套</li>
+            <li>三维动画软件系统</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">七 · 联系我们</div>
+      <h2 class="section-title">期待与您的<span>合作</span></h2>
+      <div class="divider"></div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div class="contact-detail">
+              <h4>公司地址</h4>
+              <p>北京市朝阳区朝阳门外大街19号<br>华普国际大厦925室</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail">
+              <h4>联系电话</h4>
+              <p>010-53395235</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div class="contact-detail">
+              <h4>官方网站</h4>
+              <p>www.zswy.top</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-detail">
+              <h4>微信公众号</h4>
+              <p>搜索关注「中视未央」</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🏷️</div>
+            <div class="contact-detail">
+              <h4>业务范围</h4>
+              <p>影视制作 · 动画制作 · AIGC创作<br>品牌策划 · 影视培训 · MOOC摄制</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-qr">
+          <img src="images/image182.jpeg" alt="中视未央公众号" title="中视未央">
+          <p>扫码关注「中视未央」微信公众号</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>© 中视未央（北京）文化科技有限公司 &nbsp;|&nbsp; 诚信 · 高效 · 专业 &nbsp;|&nbsp; 用专业成就你我 · 长乐未央</p>
+  </footer>
+
+</body>
+
+</html>
